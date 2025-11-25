@@ -4,9 +4,10 @@ import { StoreInventoryPage } from '../pages/storeInventory';
 import { StoreCatalogPage } from '../pages/storeCatalog';
 import { StoreCartPage } from '../pages/storeCart';
 import { StorePaymentsPage } from '../pages/storePayments';
+import { StoreOrdersPage } from '../pages/storeOrders';
 import { newStockOfItems } from '../data/new.stock.of.items';
 import { idItemInCart } from '../data/store.pages.data';
-import { existingStockOfItems } from '../data/existing.stock.of.items';
+import { paymentCards } from '../data/store.pages.data';
 
 
 
@@ -21,6 +22,7 @@ import { existingStockOfItems } from '../data/existing.stock.of.items';
     const storeHomePage = new StoreHomePage(page);
     const storeCartPage = new StoreCartPage(page);
     const storePaymentsPage = new StorePaymentsPage(page);
+    const storeOrdersPage = new StoreOrdersPage(page);
     const newItemIds = [8, 9, 10, 11, 12];
 
     await test.step('Navigate to Inventory', async () => {
@@ -74,6 +76,21 @@ import { existingStockOfItems } from '../data/existing.stock.of.items';
     await test.step(`Verify item ${item.productName} in Payments`, async () => {
         await storePaymentsPage.verifyItemDetails(item.productName, item.price, 2, item.price * 2, idItemInCart[0]!.toString());
     });
+
+    await test.step(`Verify total payment price for item ${item.productName}`, async () => {
+        await storePaymentsPage.verifyTotalPaymentPrice(item.price * 2);
+    });
+
+    await test.step('Confirm Payment', async () => {
+        await storePaymentsPage.selectPaymentOption(paymentCards.visa.displayName);
+        await storePaymentsPage.confirmPayment();
+    });
+
+    await test.step('Verify order completion', async () => {
+        await storeOrdersPage.verifyOrderCompletion(item.productName, item.price * 2, idItemInCart[0]!.toString(), item.price);
+    });
+
+    console.log(`I got miself two new ${item.productName}!`);
 
   });
 }

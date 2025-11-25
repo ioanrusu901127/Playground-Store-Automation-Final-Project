@@ -30,7 +30,7 @@ export class StorePaymentsPage {
         this.itemQuantityLocator = (name: string) => page.getByTestId('payment-item-quantity-'+ name);
         this.itemTotalPriceLocator = (name: string) => page.getByTestId('payment-item-total-value-'+ name);
         this.totalPaymentPriceLocator = page.getByTestId('payment-total-value');
-        this.paymentOptions = (name: string) => page.getByTestId('payment-option-input-' + name);
+        this.paymentOptions = (name: string) => page.getByTestId('payment-method-input-' + name);
         this.confirmPaymentButton = page.getByTestId('payment-confirm-button');
 
     }   
@@ -73,6 +73,23 @@ export class StorePaymentsPage {
         await expect(this.itemQuantityLocator(itemID)).toHaveText(expectedQuantity.toString());
         await expect(this.itemTotalPriceLocator(itemID)).toBeVisible();
         await expect(this.itemTotalPriceLocator(itemID)).toHaveText(`${expectedTotalPrice.toFixed(2)}`);
+    }
+
+
+    async verifyTotalPaymentPrice(expectedTotalPrice: number) {
+        await expect(this.totalPaymentPriceLocator).toBeVisible();
+        await expect(this.totalPaymentPriceLocator).toHaveText(`${expectedTotalPrice.toFixed(2)}`);
+    }
+
+    async selectPaymentOption(optionName: string) {
+        const optionLocator = this.paymentOptions(optionName);
+        await expect(optionLocator).toBeVisible();
+        await optionLocator.check();
+    }
+
+    async confirmPayment() {
+        await expect(this.confirmPaymentButton).toBeVisible();
+        await this.confirmPaymentButton.click();
     }
 
 }
