@@ -1,13 +1,13 @@
 # 🎭 Playground Store Automation - Final Project
 
-> **Final Project – Test Automation with Playwright**  
+**Final Project – Test Automation with Playwright**  
 
 ## 📌 Overview
 
 This project implements automated testing for the **Playground Store** application available at:  
 🔗 **https://playground-drab-six.vercel.app/store**
 
-The test suite covers all core functionalities across the Store module including:
+The test suite covers some important core functionalities across the Store module including:
 
 - 🗃 **Inventory Management** - Adding, updating, and managing product stock
 - 🏪 **Catalog** - Product browsing and cart operations
@@ -58,25 +58,25 @@ tests/
 ├── specs/                         # Test Specifications
 │   ├── inventory.spec.ts          # Inventory management tests (TODO)
 │   ├── catalog.spec.ts            # Catalog functionality tests (TODO)
-│   ├── cart.spec.ts               # Shopping cart tests
+│   ├── cart.spec.ts               # Shopping cart tests 
 │   ├── payment.spec.ts            # Payment flow tests (TODO)
 │   ├── orders.spec.ts             # Orders verification tests (TODO)
-│   └── e2e-flow.spec.ts          # End-to-end purchase flow (TODO)
-├── pages/                          # Page Object Models
-│   ├── InventoryPage.ts           # Inventory management page (TODO)
-│   ├── CatalogPage.ts             # Product catalog page (TODO)
-│   ├── CartPage.ts                # Shopping cart page
-│   ├── PaymentPage.ts             # Payment page (TODO)
-│   └── OrdersPage.ts              # Orders history page (TODO)
-
-├── data/                         # Utility files
-│   ├── testData.ts               # Test data and constants
-│   └── helpers.ts                # Reusable helper functions (TODO)
-├── playwright.config.ts          # Playwright configuration
-├── tsconfig.json                 # TypeScript configuration
-├── package.json                  # Project dependencies
-├── .gitignore                    # Git ignore rules
-└── README.md                     # This file
+│   └── e2e-flow.spec.ts           # End-to-end purchase flow (TODO)
+├── pages/                         # Page Object Models
+│   ├── storeHome.ts               # Instructions page 
+│   ├── storeInventory.ts          # Inventory management page
+│   ├── storeCatalog.ts            # Product catalog page
+│   ├── storeCart.ts               # Shopping cart page
+│   ├── storePayments.ts           # Payment page
+│   └── storeOrdes.ts              # Orders history page
+├── data/                          # Utility files
+│   ├── testData.ts                # Test data and constants
+│   └── helpers.ts                 # Reusable helper functions (TODO)
+├── playwright.config.ts           # Playwright configuration
+├── tsconfig.json                  # TypeScript configuration
+├── package.json                   # Project dependencies
+├── .gitignore                     # Git ignore rules
+└── README.md                      # This file
 ```
 
 ---
