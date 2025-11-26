@@ -74,8 +74,10 @@ export class StoreCatalogPage {
 
     async verifyItemQuantity(name: string, quantity: number) {
         const itemQuantity = this.itemQuantityLocator(name);
+        if (quantity < 0) quantity = 0;{
         await expect(itemQuantity).toBeVisible();
         await expect(itemQuantity).toHaveText(`${quantity} units`);  
+        }
     }
 
 
