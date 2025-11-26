@@ -96,8 +96,8 @@ export class StoreInventoryPage {
   async addItemName(productName: string) {
     await expect (this.productNameInput).toBeVisible();
     await this.productNameInput.fill(productName);
+  }
 
-    }
   async addNewItemPrice(price: number) { 
     await expect (this.priceInput).toBeVisible();
     await this.priceInput.fill(price.toString());
