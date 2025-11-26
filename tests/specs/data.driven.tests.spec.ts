@@ -18,6 +18,7 @@ for (const item of existingStockOfItems) {
     const storeHomePage = new StoreHomePage(page);
 
     await test.step('Navigate to Catalog Page', async () => {
+      await storeHomePage.getToStore();
       await storeHomePage.navigateToCatalog();
     });
     
@@ -57,6 +58,7 @@ for (const item of newStockOfItems) {
     const newItemIds = [8, 9, 10, 11, 12];
 
     await test.step('Navigate to Inventory Page', async () => {
+      await storeHomePage.getToStore();
       await storeHomePage.navigateToInventory();
     });
 

@@ -16,7 +16,7 @@ import { paymentCards } from '../data/store.pages.data';
 
  for (const item of newStockOfItems) {
 
-  test(`Add ${item.productName} to inventory`, async ({ page }) => {
+  test(`Add 2x ${item.productName} and purchase them`, async ({ page }) => {
     const storeInventoryPage = new StoreInventoryPage(page);
     const storeCatalogPage = new StoreCatalogPage(page);
     const storeHomePage = new StoreHomePage(page);
@@ -26,6 +26,7 @@ import { paymentCards } from '../data/store.pages.data';
     const newItemIds = [8, 9, 10, 11, 12];
 
     await test.step('Navigate to Inventory', async () => {
+      await storeHomePage.getToStore();
       await storeHomePage.navigateToInventory();
     });
 

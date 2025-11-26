@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { headersPages } from '../data/store.pages.data';
+import { time } from 'console';
 
 
 
@@ -35,51 +36,45 @@ export class StoreHomePage {
 
   }
 
-  async navigateToHome() {
-    await this.page.goto('/store', { waitUntil: 'domcontentloaded' });
+  // Initial navigation - call ONCE at test start
+  async getToStore() {
+    await this.page.goto('/store', { waitUntil: 'networkidle', timeout: 30000 });
     await expect(this.homeButton).toBeVisible();
-    await this.homeButton.click({ timeout: 5000 });
-    //await expect(this.headerHome).toBeVisible();
-    await expect(this.headerHome).toHaveText(headersPages.home);
+  }
 
+  async navigateToHome() {
+    await this.homeButton.click();
+    await expect(this.headerHome).toBeVisible({ timeout: 10000 });
+    await expect(this.headerHome).toHaveText(headersPages.home);
   }
 
   async navigateToInventory() {
-    await this.page.goto('/store', { waitUntil: 'domcontentloaded' });
-    await expect(this.inventoryButton).toBeVisible();
-    await this.inventoryButton.click({ timeout: 5000 });
-    await expect(this.headerInventory).toBeVisible();
+    await this.inventoryButton.click();
+    await expect(this.headerInventory).toBeVisible({ timeout: 10000 });
     await expect(this.headerInventory).toHaveText(headersPages.inventory);
-
   }
 
   async navigateToCatalog() {
-    await this.page.goto('/store', { waitUntil: 'domcontentloaded' });
-    await expect(this.catalogButton).toBeVisible();
-    await this.catalogButton.click({ timeout: 5000 });
-    await expect(this.headerCatalog).toBeVisible();
+    await this.catalogButton.click();
+    await expect(this.headerCatalog).toBeVisible({ timeout: 10000 });
     await expect(this.headerCatalog).toHaveText(headersPages.catalog);
   }
 
-    async navigateToCart() {
-    await this.page.goto('/store', { waitUntil: 'domcontentloaded' });
-    await expect(this.cartButton).toBeVisible();
-    await this.cartButton.click({ timeout: 5000 });
-    await expect(this.headerCart).toBeVisible();
+  async navigateToCart() {
+    await this.cartButton.click();
+    await expect(this.headerCart).toBeVisible({ timeout: 10000 });
     await expect(this.headerCart).toHaveText(headersPages.cart);
   }
-    async navigateToPayments() {
-    await this.page.goto('/store', { waitUntil: 'domcontentloaded' });
-    await expect(this.paymentsButton).toBeVisible();
-    await this.paymentsButton.click({ timeout: 5000 });
-    await expect(this.headerPayments).toBeVisible();
+
+  async navigateToPayments() {
+    await this.paymentsButton.click();
+    await expect(this.headerPayments).toBeVisible({ timeout: 10000 });
     await expect(this.headerPayments).toHaveText(headersPages.payments);
   }
-    async navigateToOrders() {
-    await this.page.goto('/store', { waitUntil: 'domcontentloaded' });
-    await expect(this.ordersButton).toBeVisible();
-    await this.ordersButton.click({ timeout: 5000 });
-    await expect(this.headerOrders).toBeVisible();
+
+  async navigateToOrders() {
+    await this.ordersButton.click();
+    await expect(this.headerOrders).toBeVisible({ timeout: 10000 });
     await expect(this.headerOrders).toHaveText(headersPages.orders);
   }
 }
