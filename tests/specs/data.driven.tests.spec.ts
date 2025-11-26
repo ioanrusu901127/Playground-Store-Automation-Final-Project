@@ -80,7 +80,11 @@ for (const item of newStockOfItems) {
       await storeCatalogPage.verifyItemName(newItemIds[0]!.toString(), item.productName);
       await storeCatalogPage.verifyItemPrice(newItemIds[0]!.toString(), item.price);
       await storeCatalogPage.verifyItemQuantity(newItemIds[0]!.toString(), item.quantity);
-      await storeCatalogPage.checkAddItemToCart(newItemIds[0]!.toString());
+      if (item.quantity > 0) {
+        await storeCatalogPage.checkAddItemToCart(newItemIds[0]!.toString());
+      } else {
+        await storeCatalogPage.checkOutOfStock(newItemIds[0]!.toString());
+      }
     });
   });
 }
