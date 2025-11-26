@@ -121,15 +121,35 @@ export class StoreInventoryPage {
     await this.clickAddProductButton();
   }
 
-  // Method for adding or removing items form the Inventory
+  // Method for adding or removing items from the Inventory
 
-  async addUnitsToInventoryItem(productName: string, unitsToAdd: number) {
-        for (let i = 0; i < unitsToAdd; i++) {
-            await this.increaseQuantityButton(productName).click();
-        }
-        await expect(this.quantityLocator(productName)).toHaveText(unitsToAdd.toString());
+  async addUnitsToInventoryItem(itemId: string, unitsToAdd: number) {
+    for (let i = 0; i < unitsToAdd; i++) {
+      await this.increaseQuantityButton(itemId).click();
     }
+    // Get current quantity after adding
+    const currentQuantity = await this.quantityLocator(itemId).textContent();
+    await expect(this.quantityLocator(itemId)).toHaveText(currentQuantity || '');
+  }
 
+  async removeOneUnitFromInventoryItem(itemId: string, currentQuantity: number) {
+    if (currentQuantity > 0) {
+      await this.decreaseQuantityButton(itemId).click();
+      await expect(this.quantityLocator(itemId)).toHaveText((currentQuantity - 1).toString());
+    } else {
+      console.log(`⚠️ No units to remove for item ID: ${itemId}`);
+    }
+  }
 
+  async removeUnitsFromInventoryItem(itemId: string, unitsToRemove: number) {
+    if (unitsToRemove > 0) {
+      for (let i = 0; i < unitsToRemove; i++) {
+        await this.decreaseQuantityButton(itemId).click();
+      }
+      await expect(this.quantityLocator(itemId)).toHaveText('0');
+    } else {
+      console.log(`⚠️ No units to remove for item ID: ${itemId}`);
+    }
+  }
 }
 
