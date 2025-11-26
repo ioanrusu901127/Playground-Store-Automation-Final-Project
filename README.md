@@ -34,49 +34,36 @@ This project demonstrates the ability to:
 
 ---
 
-## 🚀 Features & Capabilities
-
-- ✅ **TypeScript** for type safety and better developer experience
-- ✅ **Page Object Model (POM)** design pattern for maintainability
-- ✅ **Cross-browser testing** (Chromium, Firefox, WebKit)
-- ✅ **Parallel test execution** for faster feedback
-- ✅ **Comprehensive test coverage** across all Store modules
-- ✅ **HTML test reports** with detailed results
-- ✅ **Screenshots & videos** captured on test failures
-- ✅ **Trace viewer** for advanced debugging
-- ✅ **Data-driven testing** with reusable test data
-- ✅ **Clear documentation** and code comments
-- ✅ **Stable selectors** and proper wait strategies
-
----
-
 ## 📁 Project Structure
 
 ```
 Playground Store Automation Final Project/
 tests/
-├── specs/                         # Test Specifications
-│   ├── inventory.spec.ts          # Inventory management tests (TODO)
-│   ├── catalog.spec.ts            # Catalog functionality tests (TODO)
-│   ├── cart.spec.ts               # Shopping cart tests 
-│   ├── payment.spec.ts            # Payment flow tests (TODO)
-│   ├── orders.spec.ts             # Orders verification tests (TODO)
-│   └── e2e-flow.spec.ts           # End-to-end purchase flow (TODO)
-├── pages/                         # Page Object Models
-│   ├── storeHome.ts               # Instructions page 
-│   ├── storeInventory.ts          # Inventory management page
-│   ├── storeCatalog.ts            # Product catalog page
-│   ├── storeCart.ts               # Shopping cart page
-│   ├── storePayments.ts           # Payment page
-│   └── storeOrdes.ts              # Orders history page
-├── data/                          # Utility files
-│   ├── testData.ts                # Test data and constants
-│   └── helpers.ts                 # Reusable helper functions (TODO)
-├── playwright.config.ts           # Playwright configuration
-├── tsconfig.json                  # TypeScript configuration
-├── package.json                   # Project dependencies
-├── .gitignore                     # Git ignore rules
-└── README.md                      # This file
+├── specs/                            # Test Specifications
+│   ├── inventory.spec.ts             # Inventory management tests (To DO)
+│   ├── catalog.spec.ts               # Catalog functionality tests (To DO)
+│   ├── cart.spec.ts                  # Shopping cart tests (To DO)
+│   ├── payment.spec.ts               # Payment flow tests (To DO)
+│   ├── orders.spec.ts                # Orders verification tests (To DO)
+│   └── e2e.suites.spec.ts            # End-to-end purchase flow 
+│   └── data.driven.tests.spec.ts     # Data driven tests
+│   └── navigation.tests.spec.ts      # Navigation tests with headers verification 
+├── pages/                            # Page Object Models
+│   ├── storeHome.ts                  # Instructions page 
+│   ├── storeInventory.ts             # Inventory management page
+│   ├── storeCatalog.ts               # Product catalog page
+│   ├── storeCart.ts                  # Shopping cart page
+│   ├── storePayments.ts              # Payment page
+│   └── storeOrdes.ts                 # Orders history page
+├── data/                             # Utility files
+│   ├── existing.stock.of.items.ts    # The stock of existing items, default, these alre always refreshed when the page refreshes 
+│   └── new.stock.of.items.ts         # A conllection of new items to use
+│   └── store.pages.data.ts           # General data for Store, constants and lists
+├── playwright.config.ts              # Playwright configuration
+├── tsconfig.json                     # TypeScript configuration
+├── package.json                      # Project dependencies
+├── .gitignore                        # Git ignore rules
+└── README.md                         # This file
 ```
 
 ---
@@ -128,8 +115,8 @@ tests/
 - ✅ Show correct subtotals and total amount
 - ✅ Select payment method (Credit Card, PayPal, Cash, etc.)
 - ✅ Complete purchase successfully
-- ✅ Block payment without selecting payment method
-- ✅ Verify alert when payment method not selected
+- 🧭 Block payment without selecting payment method
+- 🧭 Verify alert when payment method not selected
 - ✅ Redirect to Orders page after successful payment
 
 ### 📦 Orders Tests
@@ -138,9 +125,9 @@ tests/
 
 - ✅ Display list of past orders
 - ✅ Verify order details (date, payment method, items, total)
-- ✅ Display correct item names and quantities in order
+- 🧭 Display correct item names and quantities in order
 - ✅ Show final total for each order
-- ✅ Verify orders are listed in chronological order
+- 🧭 Verify orders are listed in chronological order
 
 ### 🔄 End-to-End Flow Tests
 
@@ -148,7 +135,7 @@ tests/
 
 - ✅ Complete purchase flow: Inventory → Catalog → Cart → Payment → Orders
 - ✅ Verify data consistency across all pages
-- ✅ Multiple items purchase flow
+- 🧭 Multiple items purchase flow
 - ✅ Stock updates after purchase
 
 ---
@@ -163,34 +150,6 @@ This project uses the **Page Object Model** design pattern to:
 - **Improve maintainability** - UI changes only require updates in page objects
 - **Increase reusability** - Page methods can be used across multiple tests
 - **Enhance readability** - Tests are more descriptive and easier to understand
-
-
-```
-
-### Test Data Management
-
-Centralized test data in `/data.ts`:
-
-```typescript
-export const TEST_PRODUCTS = {
-  LAPTOP: {
-    name: 'Gaming Laptop',
-    price: 1299.99,
-    quantity: 10
-  },
-  MOUSE: {
-    name: 'Wireless Mouse',
-    price: 29.99,
-    quantity: 50
-  }
-};
-
-export const PAYMENT_METHODS = {
-  CREDIT_CARD: 'Credit Card',
-  PAYPAL: 'PayPal',
-  CASH: 'Cash'
-};
-```
 
 ---
 
